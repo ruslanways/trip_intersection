@@ -3,3 +3,4 @@ a.logo:visited { text-decoration: none; }
 a.logo:hover { text-decoration: none; }
 a.logo:active { text-decoration: none; }
 a img {border: 0;}
+a img {outline: none;}
