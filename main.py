@@ -13,17 +13,14 @@ app = Flask(__name__)
 @app.route("/", methods=['POST', 'GET'])
 def hello_world():
     if request.method == 'POST':
-        arriveAlice = request.form['arriveAlice']
-        leaveAlice = request.form['leaveAlice']
-        arriveBob = request.form['arriveBob']
-        leaveBob = request.form['leaveBob']
-
-        if not re.match(r'^\d\d-\d\d$', arriveAlice) \
-        or not re.match(r'^\d\d-\d\d$', leaveAlice) \
-        or not re.match(r'^\d\d-\d\d$', arriveBob) \
-        or not re.match(r'^\d\d-\d\d$', leaveBob):
+        arriveAlice = request.form['arriveAlice'][5:]
+        leaveAlice = request.form['leaveAlice'][5:]
+        arriveBob = request.form['arriveBob'][5:]
+        leaveBob = request.form['leaveBob'][5:]
+        try:
+            res = countDaysTogether(arriveAlice, leaveAlice, arriveBob, leaveBob)
+        except:
             return render_template('try_again.html')
-        res = countDaysTogether(arriveAlice, leaveAlice, arriveBob, leaveBob)
         return render_template('res.html', res=res)
     return render_template('trip.html')
 

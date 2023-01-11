@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
 
+{% block head %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename='validator.js') }}"></script>
+{% endblock %}
 
 {% block content %}
 
-<form method="post">
+<form method="post" onsubmit="return validateForm()">
     <div class="col-sm-4 col-xs-4">
         <legend>This program calculates total days intersection of two persons trip.</legend>
         <br>
@@ -11,22 +15,22 @@
         <div class="mb-3">
             <label for="arriveAlice" class="form-label">Enter arrival date of the first person in 'mm-dd'
                 format:</label>
-            <input type="text" name="arriveAlice" id="" class="form-control">
+            <input type="date" name="arriveAlice" id="arriveAlice" min="2023-01-01" max="2023-12-31" class="form-control" required>
         </div>
         <div class="mb-3">
             <label for="leaveAlice" class="form-label">Enter departure date of the first person in 'mm-dd'
                 format:</label>
-            <input type="text" name="leaveAlice" id="" class="form-control">
+            <input type="date" name="leaveAlice" id="leaveAlice" min="2023-01-01" max="2023-12-31" class="form-control" required>
         </div>
         <div class="mb-3">
             <label for="arriveBob" class="form-label">Enter arrival date of the second person in 'mm-dd'
                 format:</label>
-            <input type="text" name="arriveBob" id="" class="form-control">
+            <input type="date" name="arriveBob" id="arriveBob" min="2023-01-01" max="2023-12-31" class="form-control" required>
         </div>
         <div class="mb-3">
             <label for="leaveBob" class="form-label">Enter departure date of the second person in 'mm-dd'
                 format:</label>
-            <input type="text" name="leaveBob" id="" class="form-control">
+            <input type="date" name="leaveBob" id="leaveBob" min="2023-01-01" max="2023-12-31" class="form-control" required>
         </div>
         <button type="submit" class="btn btn-success">Submit</button>
     </div>
